@@ -9,16 +9,19 @@
 
 
 text = input("Введите строку: ")
-def char_count(text):
-    new_text = ""
-    for i in range(len(text)):
-        res = text.count(text[i])
-        # print(text.rfind(text[i]))
-        # print(i)
-        if res == 1:
-            new_text += text[i]
-        else:
-            if text.rfind(text[i]) - i == 0:
-                new_text += str(res) + text[i]
-    return new_text
-print(char_count(text))
+new_text = ""
+prev = ""
+count = 0
+for char in text:
+    if char != prev:
+        if prev:
+            new_text += str(count) + prev
+        count = 1
+        prev = char
+    else:
+        count += 1
+else:
+    new_text += str(count) + prev
+
+
+print(new_text)
